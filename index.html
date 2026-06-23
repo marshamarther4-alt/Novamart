@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NovaMart Store</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">NovaMart</div>
+
+  <input type="text" id="search" placeholder="Search products...">
+
+  <div class="cart">
+
+    🛒 <span id="cartCount">0</span>
+
+  </div>
+
+</header>
+
+<nav>
+
+  <button onclick="setCategory('all')">All</button>
+
+  <button onclick="setCategory('clothes')">Clothes</button>
+
+  <button onclick="setCategory('shoes')">Shoes</button>
+
+  <button onclick="setCategory('electronics')">Electronics</button>
+
+  <button onclick="setCategory('groceries')">Groceries</button>
+
+</nav>
+
+<section id="products"></section>
+
+<div class="checkout">
+
+  <button onclick="checkout()">Checkout on WhatsApp</button>
+
+</div>
+
+<script src="products.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
