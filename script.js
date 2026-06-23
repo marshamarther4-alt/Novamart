@@ -1,8 +1,14 @@
-document.querySelectorAll("button").forEach(btn => {
+let count = 0;
 
-btn.addEventListener("click", () => {
+document.querySelectorAll(".add-cart").forEach(button => {
 
-alert("Product added to cart!");
+button.addEventListener("click", () => {
+
+count++;
+
+document.getElementById("cart-count").innerText = count;
+
+alert("Added to cart!");
 
 });
 
