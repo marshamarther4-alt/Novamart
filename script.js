@@ -1,75 +1,191 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let currentCategory = "all";
+let selectedProduct = null;
 
-function display(){
+let quantity = 1;
 
-  const container = document.getElementById("products");
+// 🔥 AUTO 50 PRODUCTS FROM YOUR IMAGES
 
-  const search = document.getElementById("search").value.toLowerCase();
+const startNumber = 3974;
 
-  container.innerHTML = "";
+const totalProducts = 50;
 
-  products
+const products = Array.from({ length: totalProducts }, (_, i) => {
 
-    .filter(p => currentCategory === "all" || p.category === currentCategory)
+  const imgNumber = startNumber + i;
 
-    .filter(p => p.name.toLowerCase().includes(search))
+  let category = "others";
 
-    .forEach(p => {
+  if (i % 3 === 0) category = "shoes";
 
-      container.innerHTML += `
+  else if (i % 3 === 1) category = "clothes";
 
-        <div class="card">
+  return {
 
-          <img src="${p.image}">
+    id: i,
 
-          <h3>${p.name}</h3>
+    name: "Product " + (i + 1),
 
-          <p class="price">₦${p.price}</p>
+    price: 5000 + (i * 200),
 
-          <button class="add" onclick="addToCart(${p.id})">Add to Cart</button>
+    image: `images/IMG_${imgNumber}.jpeg`,
 
-        </div>
+    category
 
-      `;
+  };
 
-    });
+});
+
+let filtered = [...products];
+
+// 🧠 RENDER PRODUCTS
+
+function render(list = filtered) {
+
+  document.getElementById("productList").innerHTML = list.map((p, i) => `
+
+    <div class="product">
+
+      <img src="${p.image}" onclick="openProduct(${p.id})">
+
+      <h3>${p.name}</h3>
+
+      <p>₦${p.price}</p>
+
+      <button onclick="openProduct(${p.id})">View</button>
+
+    </div>
+
+  `).join("");
 
 }
 
-function addToCart(id){
+// 🔍 SEARCH
 
-  const item = products.find(p => p.id === id);
+document.getElementById("search").addEventListener("input", function () {
 
-  cart.push(item);
+  let value = this.value.toLowerCase();
+
+  filtered = products.filter(p =>
+
+    p.name.toLowerCase().includes(value)
+
+  );
+
+  render(filtered);
+
+});
+
+// 🗂 CATEGORY FILTER
+
+function filterCategory(cat) {
+
+  filtered = cat === "all" ? products : products.filter(p => p.category === cat);
+
+  render(filtered);
+
+}
+
+// 🖼 PRODUCT MODAL
+
+function openProduct(id) {
+
+  selectedProduct = products.find(p => p.id === id);
+
+  quantity = 1;
+
+  document.getElementById("modalName").innerText = selectedProduct.name;
+
+  document.getElementById("modalImg").src = selectedProduct.image;
+
+  document.getElementById("modalPrice").innerText = "₦" + selectedProduct.price;
+
+  document.getElementById("qty").innerText = quantity;
+
+  document.getElementById("productModal").style.display = "block";
+
+}
+
+function closeProduct() {
+
+  document.getElementById("productModal").style.display = "none";
+
+}
+
+function changeQty(val) {
+
+  quantity += val;
+
+  if (quantity < 1) quantity = 1;
+
+  document.getElementById("qty").innerText = quantity;
+
+}
+
+function addToCartFromModal() {
+
+  for (let i = 0; i < quantity; i++) {
+
+    cart.push(selectedProduct);
+
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCart();
+
+  closeProduct();
+
+}
+
+// 🛒 CART
+
+function updateCart() {
 
   document.getElementById("cartCount").innerText = cart.length;
 
 }
 
-function setCategory(cat){
+function openCart() {
 
-  currentCategory = cat;
+  let total = 0;
 
-  display();
+  document.getElementById("cartItems").innerHTML = cart.map(c => {
+
+    total += c.price;
+
+    return `<p>${c.name} - ₦${c.price}</p>`;
+
+  }).join("");
+
+  document.getElementById("totalPrice").innerText = "Total: ₦" + total;
+
+  document.getElementById("cartModal").style.display = "block";
 
 }
 
-document.getElementById("search").addEventListener("input", display);
+function closeCart() {
 
-function checkout(){
+  document.getElementById("cartModal").style.display = "none";
+
+}
+
+// 💬 WHATSAPP CHECKOUT
+
+function checkout() {
 
   let msg = "Hello, I want to order:%0A";
 
-  cart.forEach(p=>{
+  cart.forEach(c => {
 
-    msg += `- ${p.name} (₦${p.price})%0A`;
+    msg += `- ${c.name} ₦${c.price}%0A`;
 
   });
 
-  window.open(`https://wa.me/2348149504860?text=${msg}`);
+  window.open(`https://wa.me/2348149504860?text=${msg}`, "_blank");
 
 }
 
-display();
+updateCart();
+
+render();
