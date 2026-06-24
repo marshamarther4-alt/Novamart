@@ -1,5 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 const startNumber = 3974;
 
 const totalProducts = 50;
@@ -41,6 +41,8 @@ function render(list = filtered) {
       <p>₦${p.price}</p>
 
       <button onclick="addToCart(${p.id})">Add to Cart</button>
+
+<button onclick="addToWishlist(${p.id})">❤️ Wishlist</button>
 
     </div>
 
@@ -137,3 +139,132 @@ document.getElementById("search").addEventListener("input", function () {
 updateCart();
 
 render();
+function addToWishlist(id){
+
+const item = products.find(p => p.id === id);
+
+wishlist.push(item);
+
+localStorage.setItem(
+
+"wishlist",
+
+JSON.stringify(wishlist)
+
+);
+
+updateWishlist();
+
+}
+
+function updateWishlist(){
+
+const count =
+
+document.getElementById("wishlistCount");
+
+if(count){
+
+count.innerText = wishlist.length;
+
+}
+
+}
+
+function openWishlist(){
+
+const items =
+
+document.getElementById("wishlistItems");
+
+if(items){
+
+items.innerHTML =
+
+wishlist.map(w =>
+
+`<p>${w.name}</p>`
+
+).join("");
+
+document.getElementById(
+
+"wishlistModal"
+
+).style.display = "block";
+
+}
+
+}
+
+function closeWishlist(){
+
+document.getElementById(
+
+"wishlistModal"
+
+).style.display = "none";
+
+}
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+function(){
+
+const darkBtn =
+
+document.getElementById(
+
+"darkModeBtn"
+
+);
+
+if(darkBtn){
+
+darkBtn.onclick = function(){
+
+document.body.classList.toggle(
+
+"dark-mode"
+
+);
+
+};
+
+}
+
+updateWishlist();
+
+});
+
+function filterCategory(type){
+
+if(type === "all"){
+
+filtered = [...products];
+
+}
+
+else{
+
+filtered =
+
+products.filter(
+
+(p,i)=>
+
+(type==="Clothes" && i<17) ||
+
+(type==="Shoes" && i>=17 && i<34) ||
+
+(type==="Groceries" && i>=34)
+
+);
+
+}
+
+render(filtered);
+
+}
