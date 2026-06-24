@@ -137,3 +137,48 @@ button {
   border-radius: 10px;
 
 }
+.categories{
+
+display:flex;
+
+justify-content:center;
+
+gap:10px;
+
+padding:15px;
+
+flex-wrap:wrap;
+
+}
+
+.categories button{
+
+background:#222;
+
+color:white;
+
+}
+
+.dark-mode{
+
+background:#111;
+
+color:white;
+
+}
+
+.dark-mode .product{
+
+background:#222;
+
+color:white;
+
+}
+
+.dark-mode .modal-content{
+
+background:#222;
+
+color:white;
+
+}
