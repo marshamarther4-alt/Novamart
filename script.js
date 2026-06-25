@@ -4,6 +4,124 @@ const startNumber = 3974;
 
 const totalProducts = 50;
 
+const productNames = [
+
+"Blue Stripe Joggers",
+
+"Clutos Fashion Joggers",
+
+"Brown 3-Piece Fashion Set",
+
+"Cartoon Face T-Shirt",
+
+"Floral Summer Dress",
+
+"White Casual Shirt",
+
+"Pink Ladies Handbag",
+
+"Black Designer Jeans",
+
+"Pink Star Skirt",
+
+"Brown Zip Hoodie",
+
+"Cat Girl Hoodie",
+
+"White Princess Dress",
+
+"Women's Fashion Leggings",
+
+"Premium Native Top",
+
+"Luxury Ankara Gown",
+
+"Pleated Maxi Skirt",
+
+"White Leather Jacket",
+
+"White Designer Hoodie",
+
+"Blue Cartoon T-Shirt",
+
+"School Uniform Set",
+
+"White Air Cushion Sneakers",
+
+"Pink Star Fashion Sneakers",
+
+"Black & White Loafers",
+
+"Women's Cream Flats",
+
+"Black Roman Sandals",
+
+"White Platform Sandals",
+
+"Pink Sport Sneakers",
+
+"Black Casual Sneakers",
+
+"Black Luxury Loafers",
+
+"Burgundy High Heels",
+
+"Red Canvas Sneakers",
+
+"Women's Furry Slippers",
+
+"Brown Leather Boots",
+
+"Green Outdoor Boots",
+
+"White Retro Sneakers",
+
+"Smart Watch Series 8",
+
+"Wireless Bluetooth Earbuds",
+
+"Portable Bluetooth Speaker",
+
+"20000mAh Power Bank",
+
+"Fast Charging Cable Set",
+
+"3-in-1 Fast Charging Cable",
+
+"LED Ring Light Kit",
+
+"Portable Mini Fan",
+
+"Wireless Gaming Mouse",
+
+"Sony Wireless Headphones",
+
+"Fortune Basmati Rice 5kg",
+
+"TAT Spaghetti Pack",
+
+"Cooking Oil 5L",
+
+"Sugar Cubes & Brown Sugar Pack",
+
+"Soft Drinks Assorted Pack"
+
+];
+
+const productPrices = [
+
+8500,9000,15000,7500,12000,8000,18000,14000,10000,13000,
+
+12000,15000,8000,10000,18000,11000,20000,18000,6500,15000,
+
+25000,22000,18000,12000,15000,18000,24000,20000,22000,18000,
+
+15000,8000,28000,30000,25000,20000,12000,15000,18000,5000,
+
+6000,18000,8000,12000,35000,18000,2000,12000,5000,8000
+
+];
+
 const products = Array.from({ length: totalProducts }, (_, i) => {
 
   const num = startNumber + i;
@@ -12,9 +130,9 @@ const products = Array.from({ length: totalProducts }, (_, i) => {
 
     id: i,
 
-    name: "Product " + (i + 1),
+    name: productNames[i],
 
-    price: 5000 + (i * 200),
+    price: productPrices[i],
 
     image: `images/IMG_${num}.jpeg`
 
