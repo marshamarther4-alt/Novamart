@@ -8,7 +8,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NovaMart</title>
+<title>NovaMart USA</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -18,9 +18,10 @@
 
 <header>
 
-  <div class="logo">NovaMart</div>
+<div class="logo">🛍️ NovaMart USA</div>
 
-  <input type="text" id="search" placeholder="Search products...">
+<input type="text" id="search" placeholder="Search products...">
+
 <button id="darkModeBtn">🌙</button>
 
 <button onclick="openWishlist()">
@@ -28,15 +29,17 @@
 ❤️ <span id="wishlistCount">0</span>
 
 </button>
-  <div class="cart" onclick="openCart()">
 
-    🛒 <span id="cartCount">0</span>
+<div class="cart" onclick="openCart()">
 
-  </div>
+🛒 <span id="cartCount">0</span>
+
+</div>
 
 </header>
 
 <section class="hero">
+
 <section class="categories">
 
 <button onclick="filterCategory('all')">All</button>
@@ -48,33 +51,68 @@
 <button onclick="filterCategory('Groceries')">Groceries</button>
 
 </section>
-  <h1>Welcome to NovaMart</h1>
 
-  <p>Shop 50 real products instantly</p>
+<h1>Welcome to NovaMart USA</h1>
+
+<p>Shop premium products with fast delivery across the USA.</p>
 
 </section>
 
 <section class="products" id="productList"></section>
 
-<!-- CART -->
+<!-- Wishlist -->
+
+<div id="wishlistModal" class="modal">
+
+<div class="modal-content">
+
+<h2>❤️ My Wishlist</h2>
+
+<div id="wishlistItems"></div>
+
+<button onclick="closeWishlist()">Close</button>
+
+</div>
+
+</div>
+
+<!-- Cart -->
 
 <div id="cartModal" class="modal">
 
-  <div class="modal-content">
+<div class="modal-content">
 
-    <h2>Your Cart</h2>
+<h2>Your Shopping Cart</h2>
 
-    <div id="cartItems"></div>
+<div id="cartItems"></div>
 
-    <h3 id="totalPrice"></h3>
+<h3 id="totalPrice">$0.00</h3>
 
-    <button onclick="checkout()">Checkout on WhatsApp</button>
+<button onclick="checkout()">
 
-    <button onclick="closeCart()">Close</button>
+Checkout via WhatsApp
 
-  </div>
+</button>
+
+<button onclick="closeCart()">
+
+Continue Shopping
+
+</button>
 
 </div>
+
+</div>
+
+<footer>
+
+<p>© 2026 NovaMart USA</p>
+
+<p>Customer Support:</p>
+
+<p>WhatsApp: +1 (910) 909-0329</p>
+
+</footer>
 
 <script src="script.js"></script>
 
