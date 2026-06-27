@@ -108,17 +108,21 @@ const productNames = [
 
 ];
 
+
+
 const productPrices = [
 
-8500,9000,15000,7500,12000,8000,18000,14000,10000,13000,
+25,28,45,20,35,24,55,42,30,38,
 
-12000,15000,8000,10000,18000,11000,20000,18000,6500,15000,
+35,45,25,30,55,32,60,55,18,45,
 
-25000,22000,18000,12000,15000,18000,24000,20000,22000,18000,
+75,65,55,35,45,55,70,60,65,55,
 
-15000,8000,28000,30000,25000,20000,12000,15000,18000,5000,
+45,25,85,90,75,60,35,45,55,15,
 
-6000,18000,8000,12000,35000,18000,2000,12000,5000,8000
+18,55,25,35,100,20,8,18,10,15
+
+];
 
 ];
 
@@ -156,7 +160,7 @@ function render(list = filtered) {
 
       <h3>${p.name}</h3>
 
-      <p>₦${p.price}</p>
+      <p>$${p.price}</p>
 
       <button onclick="addToCart(${p.id})">Add to Cart</button>
 
@@ -200,11 +204,11 @@ function openCart() {
 
     total += c.price;
 
-    return `<p>${c.name} - ₦${c.price}</p>`;
+    return `<p>${c.name} - $${c.price}</p>`;
 
   }).join("");
 
-  document.getElementById("totalPrice").innerText = "Total: ₦" + total;
+  document.getElementById("totalPrice").innerText = "Total: $" + total;
 
   document.getElementById("cartModal").style.display = "block";
 
@@ -228,11 +232,11 @@ function checkout() {
 
   cart.forEach(c => {
 
-    msg += `- ${c.name} ₦${c.price}%0A`;
+    msg += `- ${c.name} $${c.price}%0A`;
 
   });
 
-  window.open(`https://wa.me/2348149504860?text=${msg}`, "_blank");
+  window.open(`https://wa.me/19109090329?text=${msg}`, "_blank");
 
 }
 
